@@ -1,8 +1,12 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import {Button, IconButton, TextField} from "@material-ui/core";
+import {AddBox, Delete} from "@material-ui/icons";
+
 type AddItemFormPropsType = {
-    addItem:(title:string)=> void
+    addItem: (title: string) => void
 }
-function AddItemForm(props:AddItemFormPropsType) {
+
+function AddItemForm(props: AddItemFormPropsType) {
     const [title, setTitle] = useState<string>("")
     const [error, setError] = useState<boolean>(false)
     const onChangeTitle = (e: ChangeEvent<HTMLInputElement>) => {
@@ -14,7 +18,7 @@ function AddItemForm(props:AddItemFormPropsType) {
             onClickAddItem()
         }
     }
-    const onClickAddItem = () =>  {
+    const onClickAddItem = () => {
         const validatedTitle = title.trim() // обрезает пробелы
         if (validatedTitle) {
             props.addItem(validatedTitle)
@@ -23,18 +27,21 @@ function AddItemForm(props:AddItemFormPropsType) {
         }
         setTitle("")
     }
-    const errorMessage = error ? <div style={{color: "red"}}>Title is error</div> : null
 
     return (
         <div>
-            <input
+            <TextField
+                variant={"outlined"}
+                size={"small"}
                 value={title}
                 onChange={onChangeTitle}
                 onKeyPress={onKeuPressAddItem}
-                className={error ? "error" : " "}
+                error={!!error}
+                label="Title"
+                helperText={error && 'title is required'}
+
             />
-            <button onClick={onClickAddItem}>+</button>
-            {errorMessage}
+            <Button variant={"contained"} color="primary" onClick={onClickAddItem} size={"medium"}>+</Button>
         </div>
 
     )
