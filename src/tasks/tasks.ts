@@ -11,11 +11,11 @@ export function sub(a:number, b: number){
     return a - b
 }
 
-export type ActionType = {
+export type AActionType = {
     type: "sum"|"mult"|"div"|"sub"
 }
 
-export function calculator(a:number, b:number,action:ActionType) {
+export function calculator(a:number, b:number,action:AActionType) {
   switch (action.type){
       case "sum":
           return a + b

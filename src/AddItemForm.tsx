@@ -41,7 +41,8 @@ function AddItemForm(props: AddItemFormPropsType) {
                 helperText={error && 'title is required'}
 
             />
-            <Button variant={"contained"} color="primary" onClick={onClickAddItem} size={"medium"}>+</Button>
+            <Button variant={"contained"} color="primary"
+                    onClick={onClickAddItem} size={"medium"}>+</Button>
         </div>
 
     )
