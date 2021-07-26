@@ -88,7 +88,7 @@ function App() {
         setTasks({...tasks, [newTodoListID]: []})
     }
 
-
+//UI
     function getFilteredTasks(tl: TodolistType) {
         switch (tl.filter) {
             case "active":
