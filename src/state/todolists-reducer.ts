@@ -6,9 +6,10 @@ type RemoveTodoListAT = {
     type: "REMOVE_TODOLIST",
     todoListID: string
 }
-type AddTodoListsAT = {
-    type: "ADD_TODOLIST",
-    title: string
+export type AddTodoListsAT = {
+    type: "ADD_TODOLIST";
+    title: string;
+    todoListID:string;
 }
 type ChangeTodolistFilterAT = {
     type: "CHANGE_TODOLIST_FILTER",
@@ -22,25 +23,19 @@ type ChangeTodolistTitleAT = {
 }
 
 
-export const todoListsReducer = (todoLists: Array<TodolistType>, action: ActionType) => {
+export const todoListsReducer = (state: Array<TodolistType>, action: ActionType) => {
     switch (action.type) {
         case "REMOVE_TODOLIST":
-            return todoLists.filter(tl => tl.id !== action.todoListID)
+            return state.filter(tl => tl.id !== action.todoListID)
         case "ADD_TODOLIST":
-            const newTodoListID = v1()
-            const newTodoList: TodolistType = {
-                id: newTodoListID,
-                title: action.title,
-                filter: "all"
-            }
-            return [...todoLists, newTodoList]
+            return [...state,{id:action.todoListID, title:action.title, filter:"all"}]
         case "CHANGE_TODOLIST_FILTER":
-            return todoLists.map(tl => tl.id === action.todoListID
+            return state.map(tl => tl.id === action.todoListID
                 ? {...tl, filter: action.filter} : tl)
         case "CHANGE_TODOLIST_TITLE":
-            return todoLists.map(t => t.id === action.todoListID ? {...t, title: action.title} : t)
+            return state.map(t => t.id === action.todoListID ? {...t, title: action.title} : t)
         default:
-            return todoLists
+            return state
     }
 }
 
@@ -52,10 +47,11 @@ export const RemoveTodoListAC = (todoListID: string): RemoveTodoListAT => {
     }
 }
 
-export const AddTodoListsAC = (title: string): AddTodoListsAT => {
+export const AddTodoListsAC = (title: string,todoListID:string): AddTodoListsAT => {
     return {
         type: "ADD_TODOLIST",
         title,
+        todoListID:v1(),
     }
 }
 
