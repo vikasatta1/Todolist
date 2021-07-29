@@ -1,9 +1,10 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import React, {ChangeEvent} from 'react';
 import {FilterValuesType, TaskType} from "./App";
 import AddItemForm from "./AddItemForm";
 import EditableSpan from "./EditableSpan";
 import {Button, Checkbox, IconButton} from "@material-ui/core";
 import {Delete} from "@material-ui/icons";
+
 
 
 type  TodoListPropsType = {
@@ -26,7 +27,6 @@ function Todolist(props: TodoListPropsType) {
     const changeTodolistTitle = (title: string) => props.changeTodolistTitle(title, props.todoListID)
     const changeRemoveTodolist = () => props.removeTodolist(props.todoListID)
     const tasksJSXElements = props.tasks.map(t => {
-        let taskClass = t.isDone === true ? "is-done" : " "
         const removeTask = () => props.removeTask(t.id, props.todoListID)
         const changeTaskStatus = (e: ChangeEvent<HTMLInputElement>) => {
             props.changeTaskStatus(t.id, e.currentTarget.checked, props.todoListID)
