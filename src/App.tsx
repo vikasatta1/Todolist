@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import './App.css';
-import Todolist from "./Todolist";
+import {Todolist} from "./Todolist";
 import {v1} from "uuid";
-import AddItemForm from "./AddItemForm";
 import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@material-ui/core";
 import {Menu} from "@material-ui/icons";
+import {AddItemForm} from "./AddItemForm";
 
 export type TaskType = {
     id: string
