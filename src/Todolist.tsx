@@ -41,7 +41,8 @@ export const Todolist = React.memo((props: TodoListPropsType) => {
         }
     }
     let newTasks = getFilteredTasks()
-    const tasksJSXElements = newTasks.map(t => {return
+    const tasksJSXElements = newTasks.map(t => {
+        return(
         <Task
             key={t.id}
             task={t}
@@ -49,7 +50,7 @@ export const Todolist = React.memo((props: TodoListPropsType) => {
             removeTask={props.removeTask}
             changeTaskStatus={props.changeTaskStatus}
             changeTaskTitle={props.changeTaskTitle}
-        />})
+        />)})
     const onClickSetAllFilter = useCallback(() => props.changeTodolistFilter('all', props.todoListID),[props.changeTodolistFilter]);
     const onClickSetActiveFilter = useCallback(() => props.changeTodolistFilter('active', props.todoListID),[props.changeTodolistFilter]);
     const onClickSetCompletedFilter = useCallback(() => props.changeTodolistFilter('completed', props.todoListID),[props.changeTodolistFilter]);
