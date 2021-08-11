@@ -37,6 +37,7 @@ test("calculator", () => {
 
 ///TDD
 
+/*
 test("deep of student", () => {
     const student = {
         name: "Bob",
@@ -50,4 +51,4 @@ test("deep of student", () => {
     expect(copyStudent.age === student.age).toBe(true)
     expect(copyStudent.friends === student.friends).not.toBe(true)
     expect(copyStudent.friends[0] === student.friends[0]).not.toBe(true)
-})
+})*/
