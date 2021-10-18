@@ -1,22 +1,28 @@
-import React, {useCallback, useReducer, useState} from 'react'
+import React, { useCallback } from 'react'
 import './App.css';
-import {TaskType, Todolist} from './Todolist';
-import {v1} from 'uuid';
-import {AddItemForm} from './AddItemForm';
-import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from '@material-ui/core';
-import {Menu} from '@material-ui/icons';
+import { TaskType, Todolist } from './Todolist';
+import { AddItemForm } from './AddItemForm';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import { Menu } from '@mui/icons-material';
 import {
     addTodolistAC,
     changeTodolistFilterAC,
     changeTodolistTitleAC,
-    removeTodolistAC,
-    todolistsReducer
+    removeTodolistAC
 } from './state/todolists-reducer';
-import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from './state/tasks-reducer';
-import {useDispatch, useSelector} from 'react-redux';
-import {AppRootStateType} from './state/store';
+import { addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC } from './state/tasks-reducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppRootStateType } from './state/store';
 
-export type FilterValuesType = "all" | "active" | "completed";
+
+export type FilterValuesType = 'all' | 'active' | 'completed';
 export type TodolistType = {
     id: string
     title: string
@@ -29,8 +35,6 @@ export type TasksStateType = {
 
 
 function App() {
-    let todolistId1 = v1();
-    let todolistId2 = v1();
 
     const todolists = useSelector<AppRootStateType, Array<TodolistType>>(state => state.todolists)
     const tasks = useSelector<AppRootStateType, TasksStateType>(state => state.tasks)
@@ -90,7 +94,7 @@ function App() {
                 </Toolbar>
             </AppBar>
             <Container fixed>
-                <Grid container style={{padding: "20px"}}>
+                <Grid container style={{padding: '20px'}}>
                     <AddItemForm addItem={addTodolist}/>
                 </Grid>
                 <Grid container spacing={3}>
@@ -99,7 +103,7 @@ function App() {
                             let allTodolistTasks = tasks[tl.id];
 
                             return <Grid item key={tl.id}>
-                                <Paper style={{padding: "10px"}}>
+                                <Paper style={{padding: '10px'}}>
                                     <Todolist
                                         id={tl.id}
                                         title={tl.title}

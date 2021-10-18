@@ -8,28 +8,32 @@ export default {
 const settings = {
     withCredentials: true,
     headers: {
-        "API-KEY": "18609265-abea-44e7-991b-d67c1c696dc2"
+        'API-KEY': "18609265-abea-44e7-991b-d67c1c696dc2"
     }
+
 }
+
+
+
 export const GetTodolists = () => {
     const [state, setState] = useState<any>(null)
     useEffect(() => {
-        todolistAPI.getTodolists()
-   .then((res) => {
-            let todos = res.data
-                setState(todos);
+      todolistAPI.getTodos()
+           .then((res) => {
+                setState(res.data);
             })
+
     }, [])
 
     return <div> {JSON.stringify(state)}</div>
 }
 
-
 export const CreateTodolist = () => {
     const [state, setState] = useState<any>(null)
     useEffect(() => {
-        todolistAPI.createTodo("you")
-        .then( (res) => {
+        const title = "newTodolist"
+        todolistAPI.createTodo(title)
+            .then( (res) => {
             setState(res.data);
         } )
 
@@ -41,7 +45,7 @@ export const DeleteTodolist = () => {
     const [state, setState] = useState<any>(null)
     useEffect(() => {
         todolistAPI.deleteTodo()
-            .then( (res) => {
+           .then( (res) => {
             setState(res.data);
         })
 
@@ -52,11 +56,13 @@ export const DeleteTodolist = () => {
 export const UpdateTodolistTitle = () => {
     const [state, setState] = useState<any>(null)
     useEffect(() => {
-        const todolistId = '8c69bdc2-8277-4400-af7e-ee3cf698536c'
-        axios.put(`https://social-network.samuraijs.com/api/1.1/todo-lists/${todolistId}`, {title: 'REACT>>>>>>>>>'}, settings)
+        const todolistId = '911dc8a5-640b-4536-954a-aa7f0b720450 '
+        const title = "CSS"
+      todolistAPI.updateTodo(title,todolistId)
             .then((res) => {
                 setState(res.data)
             })
+
     }, [])
 
     return <div> {JSON.stringify(state)}</div>
